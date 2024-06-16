@@ -10,6 +10,7 @@
         {% for note in user.note %}
             <li class="list-group-item">
                 {{ note.note }}
+                <button type="button" class="btn-close float-end" id="btn-close" onclick="deleteNote({{note.id}})"></button>
             </li>
         {% endfor %}
     </ul>
