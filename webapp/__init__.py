@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 from webapp import sec_key as sck
 from os import path
 
@@ -23,8 +24,17 @@ def create_app():
 
     create_db(app)
 
+    login_manger = LoginManager()
+    login_manger.login_view = 'auth.login'
+    login_manger.init_app(app)
+    
+    @login_manger.user_loader
+    def load_user(id):
+        return User.query.get(int(id))
+
     return app
 
 def create_db(app):
     if not path.exists('webapp/' + DB_NAME):
-        db.create_all(app = app)
+        with app.app_context():
+            db.create_all()
