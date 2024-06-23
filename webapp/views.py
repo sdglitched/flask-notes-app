@@ -28,15 +28,16 @@ def delete_note():
         if note.user_id == current_user.id:
             db.session.delete(note)
             db.session.commit()
+            flash('Note deleted!', category = 'success')
     return jsonify({})
 
-@views.route('/edit-note', methods=['GET', 'POST'])
-def edit_note():
-    note = request.form.get('note')
-    if note:
-        Note.query.get(current_user.id).note = note
+@views.route('/edit-note/<id>', methods=['GET', 'POST'])
+def edit_note(id):
+    edited_note = request.form.get('editnote')
+    if edited_note:
+        Note.query.get(id).note = edited_note
         db.session.commit()
         flash('Note edited!', category = 'success')
         return redirect(url_for('views.home'))
-    return render_template("editNote.html", user = current_user)
+    return render_template("editNote.html", user = current_user, id = id)
 

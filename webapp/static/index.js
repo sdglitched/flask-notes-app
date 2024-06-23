@@ -6,12 +6,3 @@ function deleteNote(noteId){
         window.location.href = '/';
     });
 }
-
-function editNote(noteId){
-    fetch('edit-note', {
-        method: 'POST',
-        body: JSON.stringify({noteId: noteId})
-    }).then((_res) => {
-        window.location.href = '/edit-note';
-    });
-}

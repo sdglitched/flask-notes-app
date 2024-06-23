@@ -9,10 +9,10 @@
     <ul class="list-group list-group-flush" id="notes">
         {% for note in user.note %}
             <li class="list-group-item">
+                {{ note.id }}.
                 {{ note.note }}
                 <button type="button" class="btn float-end" id="btn-edit">
-                    <a href="/edit-note"><span class="badge text-bg-secondary">Edit</span></a>
-                    <!-- <span class="badge text-bg-secondary">Edit</span> -->
+                    <a href="/edit-note/{{note.id}}"><span class="badge text-bg-secondary">Edit</span></a>
                 </button>
                 <button type="button" class="btn-close float-end" id="btn-close" onclick="deleteNote({{note.id}})"></button>
             </li>
