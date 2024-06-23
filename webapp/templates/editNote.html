@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title%}
+    My Notes - Edit Note
+{% endblock %}
+
+{% block content %}
+    <h1 style="text-align: center;">Edit Note {{id}}</h1>
+    <form class="row gy-2 gx-3 align-items-center" method="POST">
+        <textarea name="editnote" id="editnote" class="form-control"></textarea>
+        <button type="submit" class="btn btn-primary">Edit Note</button>
+    </form>
+{% endblock %}
